@@ -1,9 +1,10 @@
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.18
 MAINTAINER Pete McWilliams <pmcwilliams@augustash.com>
 
 # environment
-ENV DEBIAN_FRONTEND="noninteractive" TERM="xterm-256color" HOME="/root"
+ENV DEBIAN_FRONTEND="noninteractive" TERM="xterm-256color"
 ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en" LC_ALL="en_US.UTF-8"
+ENV HOME /root
 
 # configure base user & directories
 RUN useradd -u 911 -U -d /config -s /bin/false ash && \
