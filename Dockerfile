@@ -7,15 +7,14 @@ ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en" LC_ALL="en_US.UTF-8"
 ENV HOME /root
 
 # configure base user & directories
-RUN useradd -u 911 -U -d /config -s /bin/false ash && \
+RUN useradd -u 501 -U -d /config -s /bin/false ash && \
     usermod -G users ash && \
     mkdir -p /app /config
 
 # add base scripts
 COPY defaults/sources.list /etc/apt/sources.list
 COPY init/ /etc/my_init.d/
-RUN  chmod +x /etc/service/*/run && \
-     chmod +x /etc/my_init.d/*.sh
+RUN  chmod +x /etc/service/*/run /etc/my_init.d/*.sh
 
 # install/update packages
 RUN apt-get -yqq update && \

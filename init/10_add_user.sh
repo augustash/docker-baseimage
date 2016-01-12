@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-PUID=${PUID:-911}
-PGID=${PGID:-911}
+PUID=${PUID:-501}
+PGID=${PGID:-501}
 
 if [ ! "$(id -u ash)" -eq "$PUID" ]; then usermod -o -u "$PUID" ash ; fi
 if [ ! "$(id -g ash)" -eq "$PGID" ]; then groupmod -o -g "$PGID" ash ; fi
