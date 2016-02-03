@@ -9,7 +9,7 @@ ENV HOME /root
 # configure base user & directories
 RUN useradd -u 501 -U -d /config -s /bin/false ash && \
     usermod -G users ash && \
-    mkdir -p /app /config
+    mkdir -p /src /config
 
 # add base scripts
 COPY defaults/sources.list /etc/apt/sources.list
