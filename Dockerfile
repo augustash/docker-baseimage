@@ -8,9 +8,10 @@ ENV DEBIAN_FRONTEND="noninteractive" TERM="xterm-256color" \
 ENV PUID="501" PGID="20"
 
 # configure base user & directories
-RUN useradd -u 501 -U -d /config -s /bin/false ash && \
+RUN useradd -u $PUID -U -m -d /home/ash -s /bin/false ash && \
     usermod -G users ash && \
-    mkdir -p /src /config
+    mkdir -p /src /config && \
+    chown -R ash:ash /src /config
 
 # add base scripts
 COPY defaults/sources.list /etc/apt/sources.list
