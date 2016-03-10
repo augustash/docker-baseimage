@@ -1,0 +1,6 @@
+version: "2"
+services:
+  baseimage:
+    build:
+      context: .
+    image: augustash/baseimage:0.9.18-1
