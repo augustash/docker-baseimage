@@ -23,6 +23,9 @@ RUN apt-get -yqq update && \
     apt-get -yqq -o Dpkg::Options::="--force-confold" upgrade && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl -L -sS -o /usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 && \
+    chmod +x /usr/local/bin/confd && \
+    mkdir -p /etc/confd/{templates,conf.d,init}
 
 # exports
 VOLUME ["/src", "/config"]

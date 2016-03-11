@@ -3,4 +3,4 @@ services:
   baseimage:
     build:
       context: .
-    image: augustash/baseimage:0.9.18-1
+    image: augustash/baseimage:0.9.18-2
