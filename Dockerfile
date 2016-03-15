@@ -2,31 +2,41 @@ FROM phusion/baseimage:0.9.18
 MAINTAINER Pete McWilliams <pmcwilliams@augustash.com>
 
 # environment
-ENV DEBIAN_FRONTEND="noninteractive" TERM="xterm-256color" \
-    LANG="en_US.UTF-8" LANGUAGE="en_US:en" LC_ALL="en_US.UTF-8" \
-    HOME="/root"
-ENV PUID="501" PGID="20"
+ENV DEBIAN_FRONTEND="noninteractive" \
+    TERM="xterm-256color" \
+    LANG="en_US.UTF-8" \
+    LANGUAGE="en_US:en" \
+    LC_ALL="en_US.UTF-8" \
+    HOME="/root" \
+    PUID="501" \
+    PGID="20" \
+    APTLIST="rsync"
 
-# configure base user & directories
-RUN useradd -u $PUID -U -m -d /home/ash -s /bin/false ash && \
+# configure base system, user & directories
+RUN echo "/root" > /etc/container_environment/HOME && \
+    locale-gen en_US.UTF-8 && \
+    useradd -u "$PUID" -U -m -d /home/ash -s /bin/false ash && \
     usermod -G users ash && \
-    mkdir -p /src /config && \
-    chown -R ash:ash /src /config
+    mkdir -p /config /defaults /src
 
 # add base scripts
 COPY defaults/sources.list /etc/apt/sources.list
 COPY init/ /etc/my_init.d/
 RUN  chmod +x /etc/service/*/run /etc/my_init.d/*.sh
 
-# install/update packages
+# update packages & confd
 RUN apt-get -yqq update && \
     apt-get -yqq -o Dpkg::Options::="--force-confold" upgrade && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN curl -L -sS -o /usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 && \
+    curl -L -sS -o /usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 && \
     chmod +x /usr/local/bin/confd && \
     mkdir -p /etc/confd/{templates,conf.d,init}
 
+# install/update packages
+RUN apt-get -yqq update && \
+    apt-get -yqq install $APTLIST && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # exports
-VOLUME ["/src", "/config"]
+VOLUME ["/config", "/src"]
 CMD    ["/sbin/my_init"]

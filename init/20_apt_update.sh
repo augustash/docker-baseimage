@@ -6,5 +6,6 @@
 [ "$APTLIST" ] || exit 0
 
 # check and install available updates
-echo "Now refreshing packages from APT repositories, this *may* take a while"
+echo "==> Refreshing packages from APT repos, this *may* take a while"
 apt-get -yqq update && apt-get -yqq --only-upgrade install $APTLIST
+echo "-----> Done!"

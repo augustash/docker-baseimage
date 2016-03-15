@@ -21,7 +21,11 @@ echo "
 -----------------------------------
 
 -----------------------------------
-User UID:    $(id -u ash)
-User GID:    $(id -g ash)
+Container UID:    $(id -u ash)
+Container GID:    $(id -g ash)
 -----------------------------------
 "
+
+echo "==> Setting permissions on default volumes"
+chown ash:ash /config /defaults /src
+echo "-----> Done!"
