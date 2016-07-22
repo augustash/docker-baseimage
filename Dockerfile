@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.19
 MAINTAINER Pete McWilliams <pmcwilliams@augustash.com>
 
 # environment
@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
     HOME="/root" \
     PUID="501" \
     PGID="20" \
-    APTLIST="rsync"
+    APTLIST="apt-utils rsync"
 
 # configure base system, user & directories
 RUN echo "/root" > /etc/container_environment/HOME && \
