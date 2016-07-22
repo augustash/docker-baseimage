@@ -8,7 +8,7 @@ if [ ! -z "$USER_SCRIPT" ]; then
         /config/user_script.sh
         echo "-----> Done!"
     else
-        echo "-----> No script found."
+        echo "-----> No user-provided script found."
     fi
 fi
 exit 0

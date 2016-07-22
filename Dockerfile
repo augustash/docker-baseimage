@@ -38,5 +38,5 @@ RUN apt-get -yqq update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # exports
-VOLUME ["/config", "/src"]
+VOLUME ["/config", "/defaults", "/src"]
 CMD    ["/sbin/my_init"]
