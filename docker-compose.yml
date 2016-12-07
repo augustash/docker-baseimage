@@ -7,3 +7,5 @@ services:
     labels:
       - "com.augustash.description=August Ash Base Image"
       - "com.augustash.development-only"
+    env_file:
+      - base.env
