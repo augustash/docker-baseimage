@@ -3,7 +3,7 @@ services:
   baseimage:
     build:
       context: .
-    image: augustash/baseimage:0.9.19
+    image: augustash/baseimage:0.9.19-1
     labels:
       - "com.augustash.description=August Ash Base Image"
       - "com.augustash.development-only"
