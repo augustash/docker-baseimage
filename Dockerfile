@@ -41,9 +41,14 @@ RUN \
     chmod +x /usr/local/bin/confd && \
     mkdir -p /etc/confd/{templates,conf.d,init}
 
-# install/update packages
-RUN apt-get -yqq update && \
-    apt-get -yqq install $APTLIST && \
+# install packages
+RUN \
+    apt-get -yqq update && \
+    apt-get -yqq install --no-install-recommends --no-install-suggests $APTLIST $BUILD_DEPS
+
+# clean up
+RUN \
+    apt-get -yqq purge --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
