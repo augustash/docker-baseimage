@@ -13,7 +13,11 @@ ENV PGID 20
 ENV BASE_APTLIST=""
 ENV APTLIST \
         apt-utils \
-        rsync
+        ca-certificates \
+        curl \
+        rsync \
+        vim \
+        xz-utils
 ENV BUILD_DEPS=""
 
 # configure system
