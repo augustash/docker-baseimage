@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# default to initial Mac OS X user/group
+# default to Mac OS X user/group
 PUID=${PUID:-501}
 PGID=${PGID:-20}
 
@@ -19,13 +19,8 @@ echo "
 
        Built by August Ash
 -----------------------------------
-
------------------------------------
-Container UID:    $(id -u ash)
-Container GID:    $(id -g ash)
------------------------------------
 "
 
 echo "==> Setting permissions on default volumes"
-chown ash:ash /config /defaults /src
+chown ash:ash /backups /config /defaults /src
 echo "-----> Done!"
