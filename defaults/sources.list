@@ -2,14 +2,19 @@
 ############################# OFFICIAL UBUNTU REPOS #############################
 #################################################################################
 
-###### Ubuntu Main Repos
-deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ xenial main restricted
+deb-src http://archive.ubuntu.com/ubuntu/ xenial main restricted
 
-###### Ubuntu Security Repos
-deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates main restricted
 
-###### Ubuntu Update Repos
-deb mirror://mirrors.ubuntu.com/mirrors.txt xenial-updates main restricted universe multiverse
-deb-src mirror://mirrors.ubuntu.com/mirrors.txt xenial-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ xenial universe
+deb-src http://archive.ubuntu.com/ubuntu/ xenial universe
+deb http://archive.ubuntu.com/ubuntu/ xenial-updates universe
+deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates universe
+
+
+deb http://archive.ubuntu.com/ubuntu/ xenial-security main restricted
+deb-src http://archive.ubuntu.com/ubuntu/ xenial-security main restricted
+deb http://archive.ubuntu.com/ubuntu/ xenial-security universe
+deb-src http://archive.ubuntu.com/ubuntu/ xenial-security universe
