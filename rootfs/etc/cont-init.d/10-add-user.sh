@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
-# default to Mac OS X user/group
+# default to MacOS user/group
 PUID=${PUID:-501}
 PGID=${PGID:-20}
 
-if [ ! "$(id -u ash)" -eq "$PUID" ]; then usermod -o -u "$PUID" ash ; fi
 if [ ! "$(id -g ash)" -eq "$PGID" ]; then groupmod -o -g "$PGID" ash ; fi
+if [ ! "$(id -u ash)" -eq "$PUID" ]; then usermod -o -u "$PUID" ash ; fi
 
 echo "
 -----------------------------------
@@ -19,8 +19,14 @@ echo "
 
        Built by August Ash
 -----------------------------------
+-----------------------------------
+User UID:    $(id -u ash)
+User GID:    $(id -g ash)
+-----------------------------------
 "
 
-echo "==> Setting permissions on default volumes"
-chown ash:ash /backups /config /defaults /src
-echo "-----> Done!"
+chown -R ash:ash \
+    /backups \
+    /config \
+    /defaults \
+    /src

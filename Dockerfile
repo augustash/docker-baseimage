@@ -31,13 +31,16 @@ ENV APTLIST \
     xz-utils
 ENV BUILD_DEPS=""
 
-# packages
+# packages & configure
 RUN \
     apt-get -yqq update && \
     apt-get -yqq install --no-install-recommends --no-install-suggests $APTLIST $BUILD_DEPS && \
     apt-get -yqq purge --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    useradd -u "$PUID" -U -d /config -s /bin/false ash && \
+    usermod -G users ash && \
+    mkdir -p /backups /config /defaults /src
 
 # root filesystem
 COPY rootfs /
