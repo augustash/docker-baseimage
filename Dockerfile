@@ -39,9 +39,6 @@ ENV BUILD_DEPS=""
 RUN \
     apt-get -yqq update && \
     apt-get -yqq install --no-install-recommends --no-install-suggests $APTLIST $BUILD_DEPS && \
-    apt-get -yqq purge --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 
     curl -sSL -o /usr/local/bin/confd \
       https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-${CONFD_ARCH} && \
@@ -50,7 +47,11 @@ RUN \
 
     useradd -u "$PUID" -U -d /config -s /bin/false ash && \
     usermod -G users ash && \
-    mkdir -p /backups /config /defaults /src
+    mkdir -p /backups /config /defaults /src && \
+
+    apt-get -yqq purge --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # root filesystem
 COPY rootfs /
