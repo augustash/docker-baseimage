@@ -24,6 +24,7 @@ ENV HOME="/root" \
 ENV APTLIST \
     apt-utils \
     ca-certificates \
+    cron \
     curl \
     rsync \
     vim \
