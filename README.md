@@ -1,6 +1,6 @@
 ![https://www.augustash.com](http://augustash.s3.amazonaws.com/logos/ash-inline-color-500.png)
 
-**This base container is not currently aimed at public consumption. It exists as a starting point for August Ash containers, and we built them using [Phusion](http://phusion.github.io/baseimage-docker/) with special thanks to the group at [LinuxServer.io](http://linuxserver.io/).**
+**This base container is not currently aimed at public consumption. It exists as a starting point for August Ash containers.**
 
 ## Usage
 

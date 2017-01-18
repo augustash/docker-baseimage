@@ -30,6 +30,7 @@ ENV APTLIST \
     cron \
     curl \
     logrotate \
+    software-properties-common \
     rsync \
     vim \
     xz-utils
@@ -53,7 +54,7 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# root filesystem
+# copy root filesystem
 COPY rootfs /
 
 # run s6 supervisor
